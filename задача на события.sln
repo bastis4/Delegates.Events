@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "задача на события", "задача на события\задача на события.csproj", "{71D49D13-2333-4AE9-977C-A6FA4619CE19}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{71D49D13-2333-4AE9-977C-A6FA4619CE19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71D49D13-2333-4AE9-977C-A6FA4619CE19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71D49D13-2333-4AE9-977C-A6FA4619CE19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71D49D13-2333-4AE9-977C-A6FA4619CE19}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4197DA65-7181-4FAF-9809-0A8313E28F72}
+	EndGlobalSection
+EndGlobal
