@@ -3,7 +3,7 @@ namespace eventTask
 {
     class SingleFileManager
     {
-        public string _fileName;
+        private string _fileName;
         public SingleFileManager(string fileName) => this._fileName = fileName;
 
         public event EventHandler<SingleFileManagerEventArgs> OnFileCreated;
