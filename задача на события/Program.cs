@@ -9,34 +9,52 @@
             public SingleFileManager(string fileName) => this.fileName = fileName;
             public void Create()
             {
-                if (!File.Exists(fileName)) File.Create(fileName);
-                Console.WriteLine("The file has been created");
+                using (var fstream = new FileStream(fileName, FileMode.OpenOrCreate))
+                {
+                    Console.WriteLine($"{fileName} has been created");
+                }
             }
             public void AppendData(string data)
             {
-                using (var fstream = new FileStream(fileName, FileMode.Open))
+
+                if (File.Exists(fileName))
                 {
-                    
-                    Console.WriteLine("The file has been deleted");
+                    using (var writer = new StreamWriter(fileName, true))
+                    {
+                        writer.WriteLine(data);
+                        Console.WriteLine($"{fileName} has been changed");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"There's no file named {fileName} to add new information");
                 }
             }
             public void Delete()
             {
-                if (File.Exists(fileName)) File.Delete(fileName);
+                if (File.Exists(fileName))
+                {
+                    File.Delete(fileName);
+                    Console.WriteLine($"{fileName} has been deleted");
+                }
+                else
+                {
+                    Console.WriteLine();
+                }
             }
 
         }
-        public void Main()
+        public static void Main()
         {
             var fileManager = new SingleFileManager("newfile.txt");
 
-            fileManager.OnFileCreated += x => Console.WriteLine($"Файл {x.FileName} создан");
+            /*fileManager.OnFileCreated += x => Console.WriteLine($"Файл {x.FileName} создан");
             fileManager.OnFileDeleted += x => Console.WriteLine($"Файл {x.FileName} удален");
-            fileManager.OnFileModified += x => Console.WriteLine($"В файл {x.FileName} была добавлено {x.AppendData}");
+            fileManager.OnFileModified += x => Console.WriteLine($"В файл {x.FileName} была добавлено {x.AppendData}");*/
 
             fileManager.Create();
             fileManager.AppendData("Новая инфа");
-            fileManager.Delete();
+            //fileManager.Delete();
         }
     }
 }
