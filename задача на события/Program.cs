@@ -5,8 +5,8 @@
     {
         class SingleFileManager
         {
-            public string name;
-            public SingleFileManager(string fileName) => this.name = fileName;
+            private string _fileName;
+            public SingleFileManager(string fileName) => this._fileName = fileName;
 
             public delegate void FileHandler(SingleFileManagerEventArgs e);
             public event FileHandler? OnFileCreated;
@@ -16,33 +16,33 @@
 
             public void Create()
             {
-                using (var fstream = new FileStream(name, FileMode.OpenOrCreate))
+                using (var fstream = new FileStream(_fileName, FileMode.OpenOrCreate))
                 {
-                    OnFileCreated?.Invoke(new SingleFileManagerEventArgs($"{name} has been created", name, null));
+                    OnFileCreated?.Invoke(new SingleFileManagerEventArgs($"{_fileName} has been created", _fileName, null));
                 }
             }
             public void AppendData(string data)
             {
 
-                if (File.Exists(name))
+                if (File.Exists(_fileName))
                 {
-                    using (var writer = new StreamWriter(name, true))
+                    using (var writer = new StreamWriter(_fileName, true))
                     {
                         writer.WriteLine(data);
-                        OnFileModified?.Invoke(new SingleFileManagerEventArgs($"{name} has been changed", name, data));
+                        OnFileModified?.Invoke(new SingleFileManagerEventArgs($"{_fileName} has been changed", _fileName, data));
                     }
                 }
                 else
                 {
-                    Console.WriteLine($"There's no file named {name} to add new information");
+                    Console.WriteLine($"There's no file named {_fileName} to add new information");
                 }
             }
             public void Delete()
             {
-                if (File.Exists(name))
+                if (File.Exists(_fileName))
                 {
-                    File.Delete(name);
-                    OnFileDeleted?.Invoke(new SingleFileManagerEventArgs($"{name} has been deleted", name, null));
+                    File.Delete(_fileName);
+                    OnFileDeleted?.Invoke(new SingleFileManagerEventArgs($"{_fileName} has been deleted", _fileName, null));
                 }
                 else
                 {
